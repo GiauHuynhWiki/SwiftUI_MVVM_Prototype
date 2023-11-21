@@ -11,7 +11,9 @@ import SwiftUI
 struct SwiftUI_MVVM_PrototypeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                NewsView()
+            }
         }
     }
 }
