@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B8037EB12B0CB80D0047C876 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8037EB02B0CB80D0047C876 /* APIService.swift */; };
+		B8037EB12B0CB80D0047C876 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8037EB02B0CB80D0047C876 /* HTTPService.swift */; };
 		B8037EB42B0CB8B50047C876 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B8037EB32B0CB8B50047C876 /* Alamofire */; };
 		B85896712B0CAA9E007198CC /* SwiftUI_MVVM_PrototypeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85896702B0CAA9E007198CC /* SwiftUI_MVVM_PrototypeApp.swift */; };
 		B85896752B0CAAA0007198CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B85896742B0CAAA0007198CC /* Assets.xcassets */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B8037EB02B0CB80D0047C876 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B8037EB02B0CB80D0047C876 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		B858966D2B0CAA9E007198CC /* SwiftUI_MVVM_Prototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_MVVM_Prototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85896702B0CAA9E007198CC /* SwiftUI_MVVM_PrototypeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_MVVM_PrototypeApp.swift; sourceTree = "<group>"; };
 		B85896742B0CAAA0007198CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		B858967F2B0CAAB8007198CC /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B8037EB02B0CB80D0047C876 /* APIService.swift */,
+				B8037EB02B0CB80D0047C876 /* HTTPService.swift */,
 				B85896842B0CAB23007198CC /* APIRequest.swift */,
 			);
 			path = Network;
@@ -221,7 +221,7 @@
 				B8F7FC442B0CAEED00C936DF /* StoryViewModel.swift in Sources */,
 				B85896852B0CAB23007198CC /* APIRequest.swift in Sources */,
 				B8F7FC422B0CAD0100C936DF /* StoryView.swift in Sources */,
-				B8037EB12B0CB80D0047C876 /* APIService.swift in Sources */,
+				B8037EB12B0CB80D0047C876 /* HTTPService.swift in Sources */,
 				B85896832B0CAB0F007198CC /* Extension+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

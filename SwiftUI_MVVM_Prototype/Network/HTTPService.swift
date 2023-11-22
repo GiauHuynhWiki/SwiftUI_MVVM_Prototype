@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-class APIService {
+class HTTPService {
     private let url: String
     private var method: HTTPMethod = .get
     private var encoding: ParameterEncoding = JSONEncoding.default
@@ -28,7 +28,7 @@ class APIService {
 //            encoder: encoding,
             headers: headers
         )
-//            .validate()
+            .validate()
 //            .responseDecodable(completionHandler: <#T##(DataResponse<Decodable, AFError>) -> Void#>)
             
     }
