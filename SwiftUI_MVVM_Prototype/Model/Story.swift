@@ -10,7 +10,7 @@ struct Story: Identifiable {
     let url: URL
 }
 
-extension Story: Decodable {
+extension Story: Codable {
     enum CodingKeys: String, CodingKey {
         case id, score, title, url
         case commentCount = "descendants"
