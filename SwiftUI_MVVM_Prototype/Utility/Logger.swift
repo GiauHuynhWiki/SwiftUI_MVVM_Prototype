@@ -1,16 +1,17 @@
-func printFile(_ message: String) {
+func printLogToFile(_ message: String) {
     Logger.shared.log(message)
 }
 
+// Add to Info.plist: LSSupportsOpeningDocumentsInPlace, UIFileSharingEnabled
 class Logger {
     static let shared = Logger()
-    
+
     private init() {}
-    
+
     private var logFileURL: URL? {
         let fileManager = FileManager.default
         if let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            return documentsDirectory.appendingPathComponent("app.log")
+            return documentsDirectory.appendingPathComponent("app_log.txt")
         }
         return nil
     }
