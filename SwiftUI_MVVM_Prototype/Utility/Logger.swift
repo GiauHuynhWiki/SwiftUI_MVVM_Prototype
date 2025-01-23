@@ -41,3 +41,21 @@ class Logger {
         return try? String(contentsOf: logFileURL, encoding: .utf8)
     }
 }
+
+func fileLine(file: String = #file, line: Int = #line) -> String {
+    var filename = file
+    if let match = filename.range(of: "[^/]*$", options: .regularExpression) {
+        filename = String(filename[match])
+    }
+    return "\(filename):\(line) ---"
+}
+
+extension NSObject {
+    static var className: String {
+        return String(describing: self)
+    }
+
+    var className: String {
+        return String(describing: type(of: self))
+    }
+}
