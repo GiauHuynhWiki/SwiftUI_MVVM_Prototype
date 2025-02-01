@@ -42,12 +42,16 @@ class Logger {
     }
 }
 
-func fileLine(file: String = #file, line: Int = #line) -> String {
+func callerInfo(
+    function: String = #function,
+    file: String = #file,
+    line: Int = #line
+) -> String {
     var filename = file
     if let match = filename.range(of: "[^/]*$", options: .regularExpression) {
         filename = String(filename[match])
     }
-    return "\(filename):\(line) ---"
+    return "\(function):\(filename):\(line) ---"
 }
 
 extension NSObject {
