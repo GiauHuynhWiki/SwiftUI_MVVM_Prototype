@@ -27,3 +27,17 @@ extension Color {
         Color(UIColor.systemTeal)
     }
 }
+
+extension Encodable {
+    func toJSONString() -> String {
+        do {
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            let data = try encoder.encode(self)
+            let s = String(decoding: data, as: UTF8.self)
+            return s
+        } catch {
+            return error.localizedDescription
+        }
+    }
+}
