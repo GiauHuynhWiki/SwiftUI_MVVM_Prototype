@@ -41,3 +41,62 @@ extension Encodable {
         }
     }
 }
+
+private let iso8601FormatterWithFractionalSecs: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+    return formatter
+}()
+
+private let iso8601FormatterWithoutFractionalSecs: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    return formatter
+}()
+
+// from Karasta
+class KSJSONDecoder: JSONDecoder {
+    override init() {
+        super.init()
+        self.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let stringValue = try container.decode(String.self)
+
+            // Date formatter:
+            // We receive two formatter within reponse.
+            // 1. `yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ`
+            // 2. `yyyy-MM-dd'T'HH:mm:ssZ`, very rear case, 1/1000000 maybe
+            // So, do date decode with `yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ`,
+            // if failed, try the `yyyy-MM-dd'T'HH:mm:ssZ`,
+            // otherwise throw the decoding error.
+            if let date = iso8601FormatterWithFractionalSecs.date(from: stringValue) {
+                return date
+            } else if let date = iso8601FormatterWithoutFractionalSecs.date(from: stringValue) {
+                return date
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    in: container,
+                    debugDescription: "Error when decode date: \(stringValue)"
+                )
+            }
+        }
+        self.keyDecodingStrategy = .convertFromSnakeCase
+    }
+}
+
+// from ChatGPT
+class KSJSONEncoder: JSONEncoder {
+    override init() {
+        super.init()
+        self.outputFormatting = [.prettyPrinted, .sortedKeys]
+        self.keyEncodingStrategy = .convertToSnakeCase
+        self.dateEncodingStrategy = .custom { date, encoder in
+            var container = encoder.singleValueContainer()
+            let dateString = iso8601FormatterWithFractionalSecs.string(from: date)
+            try container.encode(dateString)
+        }
+    }
+}
+
