@@ -34,11 +34,16 @@ extension Encodable {
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             let data = try encoder.encode(self)
-            let s = String(decoding: data, as: UTF8.self)
-            return s
+            return data.toJSONString()
         } catch {
             return error.localizedDescription
         }
+    }
+}
+
+extension Data {
+    func toJSONString() -> String {
+        String(decoding: self, as: UTF8.self)
     }
 }
 
